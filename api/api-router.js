@@ -1,5 +1,7 @@
 const express = require("express");
 
+require('dotenv').config();
+
 const Shouts = require("../shouts/shouts-model.js");
 
 const router = express.Router();
@@ -10,11 +12,11 @@ router.get("/", (req, res) => {
   res.status(200).json({ api: "up" });
 });
 
-router.get('/tell-all', (_, res=>{
+router.get('/tell-all', (req, res)=>{
   res.status(200).json({
     secret: process.env.SECRET
   })
-}))
+})
 
 router.get("/shouts", (req, res, next) => {
   Shouts.find()
